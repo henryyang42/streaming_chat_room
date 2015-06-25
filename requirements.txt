@@ -1,0 +1,5 @@
+django==1.5.5
+django-socketio==0.3.6
+gevent-socketio==0.2.1
+gevent-websocket==0.2.3
+gevent==0.13.6
