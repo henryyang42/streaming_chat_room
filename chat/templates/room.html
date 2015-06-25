@@ -15,8 +15,9 @@
 {% block main %}
 {{ room.description }}
 <br>
+
 <script language="JavaScript" type="text/javascript">
-  QT_WriteOBJECT_XHTML('./mystream.sdp','800','500','',
+  QT_WriteOBJECT_XHTML('{{ STATIC_URL }}hydai.jpg','800','500','',
       'controller','true',
       'target','myself',
       'qtsrc','{{ room.stream_src }}',
