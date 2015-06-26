@@ -15,15 +15,17 @@
 {% block main %}
 {{ room.description|linebreaks }}
 <br>
-
+<div style="margin:20px">
 <script language="JavaScript" type="text/javascript">
-  QT_WriteOBJECT_XHTML('{{ STATIC_URL }}hydai.jpg','800','500','',
+  QT_WriteOBJECT_XHTML('{{ STATIC_URL }}hydai.jpg','800','600','',
+      'scale','tofit',
       'controller','true',
       'target','myself',
       'qtsrc','{{ room.stream_src }}',
       'autoplay','true',
       'type','video/quicktime') ;
 </script>
+</div>
 <ul id="messages">
     <script type="text/x-jquery-tmpl"><li class="${action}">[${time}] ${name}: ${message}</li></script>
 </ul>
