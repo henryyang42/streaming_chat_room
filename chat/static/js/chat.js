@@ -29,31 +29,42 @@ $(function() {
         return (s.length == 1 ? '0' : '') + s;
       }).join(':');
     addItem('#messages', data);
-    $("#messages").animate({ scrollTop: $(document).height() }, "slow");
+    $("#messages").animate({ scrollTop: $('#messages').prop('scrollHeight') }, "slow");
   };
 
   $('#submit').click(function() {
     var value = $('#message').val();
-    console.log(window.room);
-    if (value) {
-      if (!started) {
-        name = value;
-        data = {
-          room: window.room,
-          action: 'start',
-          name: name
-        };
-      } else {
-        data = {
-          room: window.room,
-          action: 'message',
-          message: value
-        };
+    var english = /^[\x00-\x7F]+$/;
+    if (!english.test(value)) {
+      alert('請用 ASCII 的文字，好想要支援中文ＱＱ');
+      return false;
+    } else {
+      if (value.length > 200) {
+        alert('你的訊息太長囉～');
+        return false;
       }
-      socket.send(data);
+      if (value) {
+        if (!started) {
+          name = value;
+          data = {
+            room: window.room,
+            action: 'start',
+            name: name
+          };
+          $('#submit').val('Send');
+          $('#submit').html('Send');
+        } else {
+          data = {
+            room: window.room,
+            action: 'message',
+            message: value
+          };
+        }
+        socket.send(data);
+      }
+      $('#message').val('').focus();
+      return false;
     }
-    $('#message').val('').focus();
-    return false;
   });
 
   $('#leave').click(function() {

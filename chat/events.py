@@ -1,4 +1,4 @@
-
+# -*- coding: utf-8 -*-
 from django.shortcuts import get_object_or_404
 from django.utils.html import strip_tags
 from django_socketio import events
@@ -32,7 +32,7 @@ def message(request, socket, context, message):
         except KeyError:
             return
         if message["action"] == "message":
-            message["message"] = strip_tags(message["message"])
+            message["message"] = strip_tags(message["message"])[:200]
             message["name"] = user.name
             socket.send_and_broadcast_channel(message)
 

@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from django.db import models
 from django.contrib import admin
 from django.template.defaultfilters import slugify
@@ -9,6 +10,7 @@ class ChatRoom(models.Model):
     name = models.CharField(max_length=20)
     description = models.TextField(blank=True)
     stream_src = models.CharField(max_length=128)
+    stream_img = models.CharField(max_length=128)
     slug = models.SlugField(blank=True)
 
     class Meta:
