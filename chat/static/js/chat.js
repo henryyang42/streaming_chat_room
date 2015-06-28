@@ -32,8 +32,9 @@ $(function() {
     $("#messages").animate({ scrollTop: $(document).height() }, "slow");
   };
 
-  $('form').submit(function() {
+  $('#submit').click(function() {
     var value = $('#message').val();
+    console.log(window.room);
     if (value) {
       if (!started) {
         name = value;

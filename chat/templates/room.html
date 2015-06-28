@@ -1,6 +1,12 @@
 {% extends "base.html" %}
 
-{% block title %}{{ room }}{% endblock %}
+{% block title %}
+{{ room }}
+{% endblock %}
+
+{% block page_title %}
+{{ room }}: {{ room.description }}
+{% endblock %}
 
 {% block extra_js %}
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
@@ -9,30 +15,39 @@
 {% load socketio_tags %}
 {% socketio %}
 <script src="{{ STATIC_URL }}js/chat.js"></script>
-<script>window.room = {{ room.id }};</script>
+<script>
+window.room = {{ room.id }};
+</script>
 {% endblock %}
 
 {% block main %}
-{{ room.description|linebreaks }}
-<br>
-
-<script language="JavaScript" type="text/javascript">
-  QT_WriteOBJECT_XHTML('{{ STATIC_URL }}hydai.jpg','800','500','',
-      'controller','true',
-      'target','myself',
-      'qtsrc','{{ room.stream_src }}',
-      'autoplay','true',
-      'type','video/quicktime') ;
-</script>
-<ul id="messages">
-    <script type="text/x-jquery-tmpl"><li class="${action}">[${time}] ${name}: ${message}</li></script>
-</ul>
+<div class="card-panel hoverable">
+  <script language="JavaScript" type="text/javascript">
+  QT_WriteOBJECT_XHTML('{{ STATIC_URL }}hydai.jpg', '800', '500', '',
+    'controller', 'true',
+    'target', 'myself',
+    'qtsrc', '{{ room.stream_src }}',
+    'autoplay', 'true',
+    'type', 'video/quicktime');
+  </script>
+</div>
 {% endblock %}
 
 {% block form %}
-<form>
-    <input type="text" id="message" name="message">
-    <input type="submit" id="submit" value="Join">
-    <input type="button" id="leave" value="Leave">
+<ul id="messages" class="collection indigo lighten-5 col s3 z-depth-5">
+  <script type="text/x-jquery-tmpl">
+    <li class="${action} collection-item">[${time}] ${name}: ${message}</li>
+  </script>
+</ul>
+<form class="blue-grey lighten-5 col s3 z-depth-5">
+  <div class="row">
+    <div class="col s12">
+      <input type="text" id="message" name="message">
+    </div>
+    <div class="col s12">
+      <button class="btn waves-effect waves-teal" type="submit" id="submit" value="Join">Join</button>
+      <button class="btn waves-effect waves-red" type="button" id="leave" value="Leave">Leave</button>
+    </div>
+  </div>
 </form>
 {% endblock %}

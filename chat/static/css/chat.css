@@ -1,22 +1,66 @@
+html {
+  font-size: 16px;
+  font-family: sans-serif;
+  font-weight: 400;
+  color: rgba(0, 0, 0, 0.87);
+  line-height: 1.5;
+}
 
-* {font-size:16px; font-family:sans-serif;}
-h1 a {font-size:24px;}
-body {margin:20px 0 0 0;}
-#main {padding-bottom:100px;}
+h1 a {
+  font-size: 24px;
+}
 
-form {position:fixed; bottom:0; background:#ccc; width:100%;
-      border-top:1px solid #999; display:none;}
-input {border:1px solid #999; padding:10px; border-radius:5px;}
-#message, #name {width:600px; margin:20px 0 20px 20px;}
-#submit, #leave {cursor:pointer; margin-left:10px; padding:10px 30px;}
+form {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  border-top: 1px solid #999;
+  display: none;
+  min-height: 150px;
+  max-height: 150px;
+}
 
-ul {margin:0; padding:0; list-style-type:none;}
-h1, p, li {margin:10px 20px;}
+.nav-up {
+	height: 60px;
+}
 
-#messages {position:fixed; right:0; top:-81px; bottom:0; width:300px;
-        background:#eee; display:none; overflow:scroll;
-        border-left:1px solid #ccc; margin-top:81px; margin-bottom: 81px;}
+.main {
+	position: fixed;
+	left: Calc(100%/6);
+}
 
-.room {float:left;}
-form label {margin-left:10px;}
-.system {font-weight:bold; color:#f00;}
+.sidebar {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  display: block;
+  overflow: scroll;
+  border-left: 1px solid #ccc;
+  margin-top: 60px;
+}
+
+#message,
+#name {
+	width: 80%;
+  margin: 20px auto 20px auto;
+}
+
+#messages {
+  position: fixed;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  display: block;
+  overflow: scroll;
+  margin-top: 60px;
+  margin-bottom: 150px;
+}
+
+.room {
+  float: left;
+}
+
+.system {
+  font-weight: bold;
+  color: #f00;
+}

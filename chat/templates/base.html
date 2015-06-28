@@ -1,24 +1,43 @@
 <!doctype html>
 <html lang="en">
+
 <head>
-
-    <meta charset="utf-8">
-    <title>{% block title %}Chat{% endblock %}</title>
-    <link rel="stylesheet" href="{{ STATIC_URL }}css/chat.css">
-    {% block extra_css %}{% endblock %}
-    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-
-    <script>
-        var showForm = function() {
-            $('form').slideDown(function() {
-                $('form input[type="text"]').focus();
-            });
-        };
-    </script>
-    {% block extra_js %}{% endblock %}
-
+  <meta charset="utf-8">
+  <title>{% block title %}Chat{% endblock %}</title>
+  <link rel="stylesheet" href="{{ STATIC_URL }}css/chat.css">
+  <link rel="stylesheet" href="{{ STATIC_URL }}css/materialize.min.css"> {% block extra_css %}{% endblock %}
+  <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+  <script src="{{ STATIC_URL }}js/materialize.min.js"></script>
+  <script>
+  var showForm = function() {
+    $('form').slideDown(function() {
+      $('form input[type="text"]').focus();
+    });
+  };
+  </script>
+  {% block extra_js %}{% endblock %}
 </head>
+
 <body>
-    <div id="main">{% block main %}{% endblock %}</div>
-    {% block form %}{% endblock %}
+  <header>
+    <nav class="top-nav blue lighten-2 nav-up">
+      <div class="nav-wrapper">
+        <a class="brand-logo">{% block page_title %}{% endblock %}</a>
+      </div>
+    </nav>
+  </header>
+  <div class="row">
+    <div class="col s2 sidebar blue lighten-5 z-depth-5">
+      {% for room in rooms %}
+        <h5 class="header">
+          <a href="{{ room.get_absolute_url }}">{{ room }} ({{ room.users.count }})</a>
+        </h5>
+      {% empty %}
+        <h5 class="header">There are currently no rooms!</h5>
+      {% endfor %}
+      <br clear="all">
+    </div>
+    <div class="col s7 main">{% block main %}{% endblock %}</div>
+    <div class="">{% block form %}{% endblock %}</div>
+  </div>
 </body>

@@ -18,7 +18,8 @@ def room(request, slug, template="room.html"):
     """
     Show a room.
     """
-    context = {"room": get_object_or_404(ChatRoom, slug=slug)}
+    context = {"room": get_object_or_404(ChatRoom, slug=slug),
+               "rooms": ChatRoom.objects.all()}
     return render(request, template, context)
 
 
