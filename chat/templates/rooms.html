@@ -1,9 +1,9 @@
 {% extends "base.html" %}
 
 {% load url from future %}
-
+{% block title %}FakeTwitch{% endblock %}
 {% block page_title %}
-Rooms
+<a class="brand-logo center"><span class="large material-icons dp48">video_library</span>FakeTwitch</a>
 {% endblock %}
 
 {% block extra_js %}
@@ -11,18 +11,28 @@ Rooms
 {% endblock %}
 
 {% block main %}
+<div class="row">
 {% for room in rooms %}
-<div class="room">
-    <h1><a href="{{ room.get_absolute_url }}">{{ room }}</a></h1>
-    <ul>
-        {% for user in room.users.all %}
-        <li>{{ user }}</li>
-        {% endfor %}
-    </ul>
+  <div class="col s12 m6 l4">
+  <div class="card">
+    <a href="{{ room.get_absolute_url }}">
+      <div class="card-image">
+        <img src="{{ STATIC_URL }}hydai.jpg">
+        <span class="card-title">{{ room }}</span>
+      </div>
+    </a>
+    <div class="card-content">
+      <p>{{ room.description|linebreaks }}</p>
+    </div>
+    <div class="card-action">
+      <a class="waves-effect waves-teal btn-flat" href="{{ room.get_absolute_url }}">Watch now</a>
+    </div>
+  </div>
 </div>
 {% empty %}
 <p>There are currently no rooms!</p>
 {% endfor %}
 <br clear="all">
+</div>
 {% endblock %}
 

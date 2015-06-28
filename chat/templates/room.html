@@ -1,11 +1,11 @@
 {% extends "base.html" %}
 
 {% block title %}
-{{ room }}
+{{ room }} - FakeTwitch
 {% endblock %}
 
 {% block page_title %}
-{{ room }}: {{ room.description }}
+<a class="brand-logo center">{{ room }}</a>
 {% endblock %}
 
 {% block extra_js %}
@@ -23,7 +23,7 @@ window.room = {{ room.id }};
 {% block main %}
 <div class="card-panel hoverable">
   <script language="JavaScript" type="text/javascript">
-  QT_WriteOBJECT_XHTML('{{ STATIC_URL }}hydai.jpg', '800', '600', '',
+  QT_WriteOBJECT_XHTML('{{ STATIC_URL }}hydai.jpg', '800', '480', '',
     'scale','tofit',
     'controller', 'true',
     'target', 'myself',
@@ -31,6 +31,16 @@ window.room = {{ room.id }};
     'autoplay', 'true',
     'type', 'video/quicktime');
   </script>
+</div>
+<div class="row">
+  <div class="col s12">
+    <div class="card blue-grey darken-1">
+      <div class="card-content white-text">
+        <h5 class="header">現在討論區人數：{{ room.users.count }}</h5>
+        <p>{{ room.description|linebreaks }}</p>
+      </div>
+    </div>
+  </div>
 </div>
 {% endblock %}
 

@@ -3,7 +3,8 @@
 
 <head>
   <meta charset="utf-8">
-  <title>{% block title %}Chat{% endblock %}</title>
+  <title>{% block title %}FakeTwitch{% endblock %}</title>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="stylesheet" href="{{ STATIC_URL }}css/chat.css">
   <link rel="stylesheet" href="{{ STATIC_URL }}css/materialize.min.css"> {% block extra_css %}{% endblock %}
   <script src="http://code.jquery.com/jquery-latest.min.js"></script>
@@ -22,15 +23,18 @@
   <header>
     <nav class="top-nav blue lighten-2 nav-up">
       <div class="nav-wrapper">
-        <a class="brand-logo">{% block page_title %}{% endblock %}</a>
+        {% block page_title %}{% endblock %}
       </div>
     </nav>
   </header>
   <div class="row">
     <div class="col s2 sidebar blue lighten-5 z-depth-5">
+      <!--h4 class="header indigo-text text-lighten-1">現在直播頻道</h4-->
+
       {% for room in rooms %}
+        <div class="divider"></div>
         <h5 class="header">
-          <a href="{{ room.get_absolute_url }}">{{ room }} ({{ room.users.count }})</a>
+          <a href="{{ room.get_absolute_url }}" class="indigo-text text-lighten-1"><i class="material-icons dp48">high_quality</i>{{ room }}</a>
         </h5>
       {% empty %}
         <h5 class="header">There are currently no rooms!</h5>
