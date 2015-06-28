@@ -23,7 +23,8 @@ window.room = {{ room.id }};
 {% block main %}
 <div class="card-panel hoverable">
   <script language="JavaScript" type="text/javascript">
-  QT_WriteOBJECT_XHTML('{{ STATIC_URL }}hydai.jpg', '800', '500', '',
+  QT_WriteOBJECT_XHTML('{{ STATIC_URL }}hydai.jpg', '800', '600', '',
+    'scale','tofit',
     'controller', 'true',
     'target', 'myself',
     'qtsrc', '{{ room.stream_src }}',
